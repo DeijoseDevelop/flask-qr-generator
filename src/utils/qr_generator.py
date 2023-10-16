@@ -1,3 +1,4 @@
+import json
 import logging
 
 import qrcode
@@ -17,9 +18,9 @@ class QrGenerator:
         except Exception as e:
             logger.exception(e)
 
-    def encrypt_data(self, data: str):
+    def encrypt_data(self, data: dict):
         try:
-            self.qr.add_data(data)
+            self.qr.add_data(json.dumps(data))
             self.qr.make(fit=True)
             return self
         except Exception as e:

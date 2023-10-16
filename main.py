@@ -53,8 +53,6 @@ class ReadQRView(views.MethodView):
         except json.decoder.JSONDecodeError:
             response = qr_reader.read_qr_code()
 
-        current_app.logger.error(qr_reader.read_qr_code())
-
         return CustomResponse({"result": response})
 
 
