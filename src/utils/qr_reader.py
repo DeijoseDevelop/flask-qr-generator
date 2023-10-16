@@ -11,7 +11,7 @@ class QRReader(object):
         self.image = image
         self.qr_detector = cv2.QRCodeDetector()
 
-    def read_qr_code(self):
+    def read(self):
         detection = self.qr_detector.detectAndDecodeMulti(self.image)
 
         if not detection[0]:

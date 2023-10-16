@@ -49,9 +49,9 @@ class ReadQRView(views.MethodView):
         qr_reader = QRReader(image_reader.image)
 
         try:
-            response = json.loads(qr_reader.read_qr_code())
+            response = json.loads(qr_reader.read())
         except json.decoder.JSONDecodeError:
-            response = qr_reader.read_qr_code()
+            response = qr_reader.read()
 
         return CustomResponse({"result": response})
 
