@@ -20,7 +20,7 @@ class QrGenerator:
 
     def encrypt_data(self, data: dict):
         try:
-            self.qr.add_data(json.dumps(data))
+            self.qr.add_data(data)
             self.qr.make(fit=True)
             return self
         except Exception as e:

@@ -29,7 +29,11 @@ class GenerateQRView(views.MethodView):
         if not data:
             return CustomResponse({"message": 'Data not found'}, status=404)
 
-        qr_generator = QrGenerator().encrypt_data(json.loads(data))
+        try:
+            qr_generator = QrGenerator().encrypt_data(json.dumps(json.loads(data)))
+        except json.decoder.JSONDecodeError:
+            qr_generator = QrGenerator().encrypt_data(data)
+
         image = qr_generator.generate_image()
 
         image.save('test.jpeg', format="JPEG")
